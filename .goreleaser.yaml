@@ -1,0 +1,47 @@
+
+version: 2
+
+
+builds:
+  - id: darwin
+    main: ./main.go
+    goos: 
+      - darwin
+    goarch:
+      - arm64
+      - amd64
+    env:
+      - CGO_ENABLED=1
+      - GO111MODULE=on
+  - id: windows
+    main: ./main.go
+    goos:
+      - windows
+    goarch:
+      - amd64
+      - "386"
+    env:
+      - CGO_ENABLED=1
+      - GO111MODULE=on
+
+archives:
+
+  - id: windows_archive
+    builds:
+      - windows
+    format: zip
+    name_template: "{{ .ProjectName }}_{{ .Version }}_windows_{{ .Arch }}"
+
+  - id: darwin_archive
+    builds:
+      - darwin
+    format: tar.gz
+    name_template: "{{ .ProjectName }}_{{ .Version }}_darwin_{{ .Arch }}"
+
+
+changelog:
+  sort: asc
+  filters:
+    exclude:
+      - "^docs:"
+      - "^test:"
