@@ -41,6 +41,6 @@ go build
 
 ```
 
-Also you can download the [binaries](https://github.com/root27/gosys/packages)
+Also you can download the [binaries](https://github.com/root27/gosys/releases)
 
 
